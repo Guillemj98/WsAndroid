@@ -1,0 +1,82 @@
+# Archivos generados por Android Studio
+.gradle/
+.local/
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+.idea/codeStyles/
+.idea/codeStyles/codeStyleConfig.xml
+.idea/codeStyles/Project.xml
+.idea/compiler.xml
+.idea/copyright/
+.idea/dictionaries/
+.idea/encodings.xml
+.idea/externalDependencies.xml
+.idea/gradle.xml
+.idea/jarRepositories.xml
+.idea/misc.xml
+.idea/runConfigurations/
+.idea/sqlDataSources.xml
+.idea/vcs.xml
+
+# Archivos de compilación
+build/
+captures/
+output/
+
+# Archivos de configuración de Android
+.gradle/
+local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+
+# Archivos de configuración de sistema operativo
+Thumbs.db
+.DS_Store
+
+# Archivos de configuración de compilación
+.gradle/
+**/build/
+**/captures/
+**/externalNativeBuild/
+
+# Archivos de artefactos generados por compilación
+*.iml
+*.hprof
+
+# Archivos de Maven
+/.idea/libraries/
+
+# Archivos de Proguard
+proguard/
+
+# Archivos de configuración de ejecución
+/.idea/runConfigurations/
+
+# Archivos de Keystore
+*.jks
+*.keystore
+
+# Archivos de log
+*.log
+
+# Archivos de configuración de sistema operativo específicos de Mac
+.idea/*-*-key.xml
+
+# SDK generado por Android Studio
+/.idea/androidStudioFirstRun.xml
+
+# Archivos de configuración para proyectos Kotlin
+.idea/kotlin/
+.idea/kotlin_compiler.xml
+
+# Archivos de configuración de test
+.idea/tasks.xml
+.idea/gradle/
+.idea/modules.xml
+.idea/navEditor.xml
+.idea/vcs.xml
