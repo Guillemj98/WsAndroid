@@ -14,9 +14,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-    public EditText number1;
-    public EditText number2;
-    public TextView resultado;
+    private EditText number1;
+    private EditText number2;
+    private TextView resultado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         }else{
             double num1 = Double.parseDouble(numero1);
             double num2 = Double.parseDouble(numero2);
-            resultadoMultiplicacion = num1 - num2;
+            resultadoMultiplicacion = num1 * num2;
             resultado.setText("El resultado es: " + resultadoMultiplicacion);
         }
         return resultadoMultiplicacion;
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         }else{
             double num1 = Double.parseDouble(numero1);
             double num2 = Double.parseDouble(numero2);
-            resultadoPotencia = num1 - num2;
+            resultadoPotencia = Math.pow(num1,num2);
             resultado.setText("El resultado es: " + resultadoPotencia);
         }
         return resultadoPotencia;
