@@ -66,31 +66,52 @@ public class PizzeriaActivity extends AppCompatActivity {
          ingrediente9 = findViewById(R.id.Pinia);
 
         Button pedirPizza = findViewById(R.id.hacerPedido);
-        //nombreUsuario = findViewById(R.id.nombre);
-       // direccionUsuario = findViewById(R.id.direccion);
+
         Intent intent = getIntent();
         String nombre = intent.getStringExtra("nombre");
         String direccion = intent.getStringExtra("direccion");
-       // nombreUsuario.setText(usuario.getNombre());
-       // direccionUsuario.setText(direccion);
+        Log.d("PizzeriaActivity", "Nombre: " + nombre);
+        Log.d("PizzeriaActivity", "Dirección: " + direccion);
+
         GestorPizza gp = new GestorPizza();
 
         pedirPizza.setOnClickListener(view ->{
             pizza = new Pizza();
 
             Log.i("pizzeriaActivity", String.valueOf(pizza));
+            agregarIngrediente(pizza);
+            int tamanioIndex = obtenerTamañoPizza(rg);
+            if (tamanioIndex != -1) {
+               Tamanio tamanioSeleccionado = Tamanio.values()[tamanioIndex];
+               pizza.setTamanioPizza(tamanioSeleccionado);
+               gp.calcularPizza(pizza);
+               Log.d("pizza", String.valueOf(pizza.getPrecio()));
+                Intent intent2 = new Intent(PizzeriaActivity.this, ConfirmacionActivity.class);
+                intent2.putExtra("nombre", nombre);
+                intent2.putExtra("direccion", direccion);
+                intent2.putExtra("tamanio", tamanioSeleccionado.toString());
+                intent2.putExtra("precio", pizza.getPrecio());
 
-        pizza.setListaIngrediente(listaIngrediente);
+
+                ArrayList<String> nombresIngredientes = new ArrayList<>();
+                for (Ingrediente ingrediente : pizza.getListaIngrediente()) {
+                    nombresIngredientes.add(ingrediente.getNombre());
+                }
+                intent2.putStringArrayListExtra("ingredientes", nombresIngredientes);
+
+                startActivity(intent2);
+
+            }else{
+                Toast.makeText(PizzeriaActivity.this, "Por favor, seleccione un tamaño de pizza", Toast.LENGTH_SHORT).show();
+            }
 
 
-        agregarIngrediente(pizza);
+            pizza.setListaIngrediente(listaIngrediente);
+
             Log.i("pizzeriaActivity", String.valueOf(pizza));
-        obtenerTamañoPizza(rg);
 
-        pizza.setTamanioPizza(Tamanio.values()[obtenerTamañoPizza(rg)]);
-        gp.calcularPizza(pizza);
 
-            Log.d("pizza", String.valueOf(pizza.getPrecio()));
+
 
         });
 
@@ -99,22 +120,22 @@ public class PizzeriaActivity extends AppCompatActivity {
 
     private int obtenerTamañoPizza(RadioGroup rg) {
 
-        final int[] n = {1};
+        int checkedId = rg.getCheckedRadioButtonId();
 
-        rg.setOnCheckedChangeListener((group, checkedId) -> {
+
             if (checkedId == R.id.radio1) {
-                n[0] = 0;
+                return 0;
 
             }
             if (checkedId == R.id.radio2) {
-                n[0] = 1;
+                return 1;
 
             }
             if(checkedId == R.id.radio3) {
-                n[0] = 2;
+                return 2;
             }
-        });
-        return n[0];
+
+        return -1;
     }
 
 

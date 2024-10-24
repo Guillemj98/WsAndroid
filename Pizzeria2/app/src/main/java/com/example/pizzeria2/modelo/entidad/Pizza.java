@@ -10,7 +10,7 @@ public class Pizza implements Serializable {
     private ArrayList<Ingrediente> listaIngrediente;
 
     public Pizza() {
-
+        this.listaIngrediente = new ArrayList<>();
     }
 
     public Tamanio getTamanioPizza() {

@@ -47,9 +47,11 @@ public class MainActivity extends AppCompatActivity {
             Usuario u = new Usuario();
             u.setNombre(nombre.getText().toString());
             u.setPassword(password.getText().toString());
+
             if(gestorUsuario.validarUsuario(u)==1){
                 Intent intent = new Intent(MainActivity.this, PizzeriaActivity.class);
-                intent.putExtra(K_USUARIO, u);
+                intent.putExtra("nombre", u.getNombre());
+                intent.putExtra("direccion", u.getDireccion());
                 startActivity(intent);
 
             }else{
