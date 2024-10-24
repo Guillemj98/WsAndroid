@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Pizzeria2</string>
+    <string name="title_activity_confirmacion">ConfirmacionActivity</string>
+    <string name="title_activity_cofirmacion">Cofirmacion</string>
 </resources>

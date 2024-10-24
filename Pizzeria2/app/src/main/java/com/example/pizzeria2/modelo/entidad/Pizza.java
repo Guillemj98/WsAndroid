@@ -41,18 +41,16 @@ public class Pizza implements Serializable {
         return Double.compare(precio, pizza.precio) == 0 && tamanioPizza == pizza.tamanioPizza && Objects.equals(listaIngrediente, pizza.listaIngrediente);
     }
 
-    @Override
-    public String toString() {
-        return "Pizza{" +
-                "tamanioPizza=" + tamanioPizza +
-                ", precio=" + precio +
-                ", listaIngrediente=" + listaIngrediente +
-                '}';
-    }
+
 
     public Pizza(Tamanio tamanioPizza, double precio, ArrayList<Ingrediente> listaIngrediente) {
         this.tamanioPizza = tamanioPizza;
         this.precio = precio;
         this.listaIngrediente = listaIngrediente;
     }
+    public void agregarIngrediente(Ingrediente ingrediente) {
+        listaIngrediente.add(ingrediente);
+    }
+
+
 }
