@@ -18,14 +18,15 @@ public class DaoUsuario {
         listaUsuarios.add(usuario3);
 
     }
-    public Usuario getUsuarioByName(String nombre){
-       for(Usuario u : listaUsuarios){
-           if(u.getNombre().equals(nombre)){
-               return u;
+    public Boolean getUsuarioByName(Usuario u){
+        registraUsuario();
+       for(Usuario user : listaUsuarios){
+           if(user.equals(u)){
+               return true;
            }
        }
         Log.i("Mensaje de error", "Error el usuario o la contraseña no esta");
-       return null;
+       return false;
     }
 
 

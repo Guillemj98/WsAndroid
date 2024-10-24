@@ -8,19 +8,14 @@ public class GestorUsuario {
 
     public int validarUsuario(Usuario u){
         daoUsuario = new DaoUsuario();
-        try {
-            Usuario uPersistencia = daoUsuario.getUsuarioByName(u.getNombre());
-            if(uPersistencia == null){
-                return 0;
-            }
-            if(uPersistencia.equals(u)){
-                return 1;
-            }else{
-                return 2;
-            }
-        }catch (Exception e){
-            return 666;
+        if(daoUsuario.getUsuarioByName(u)){
+            return 1;
+        }else{
+            return 0;
         }
+
+
+
     }
 
 }

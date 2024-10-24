@@ -2,10 +2,13 @@ package com.example.pizzeria2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,14 +19,13 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.pizzeria2.modelo.entidad.Ingrediente;
 import com.example.pizzeria2.modelo.entidad.Pizza;
 import com.example.pizzeria2.modelo.entidad.Tamanio;
+import com.example.pizzeria2.modelo.entidad.Usuario;
 import com.example.pizzeria2.modelo.negocio.GestorPizza;
 
+import java.util.ArrayList;
+
 public class PizzeriaActivity extends AppCompatActivity {
-    private TextView nombreUsuario;
-    private TextView direccionUsuario;
-    int precioTamanio =0;
-    int precioIngredientes =0;
-    int precioTotal = 0;
+    public final static String K_USUARIO = "usuario";
     private CheckBox ingrediente1;
     private CheckBox ingrediente2;
     private CheckBox ingrediente3;
@@ -34,15 +36,25 @@ public class PizzeriaActivity extends AppCompatActivity {
     private CheckBox ingrediente8;
     private CheckBox ingrediente9;
 
+    Pizza pizza;
+    ArrayList<Ingrediente> listaIngrediente = new ArrayList<>();
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Usuario usuario = (Usuario)getIntent().getSerializableExtra(MainActivity.K_USUARIO);
+        Log.d("PizzeriActivity", "usuario".toString());
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_pizzeria);
 
 
 
-        RadioGroup rg = findViewById(R.id.GrupoRadio);
+         RadioGroup rg = findViewById(R.id.GrupoRadio);
+
+         String tamanioPizza = null;
+         ArrayList<Ingrediente>listaIngredientes = new ArrayList<>();
          ingrediente1 = findViewById(R.id.JamonYork);
          ingrediente2 = findViewById(R.id.Bacon);
          ingrediente3 = findViewById(R.id.Carne);
@@ -54,25 +66,59 @@ public class PizzeriaActivity extends AppCompatActivity {
          ingrediente9 = findViewById(R.id.Pinia);
 
         Button pedirPizza = findViewById(R.id.hacerPedido);
-        nombreUsuario = findViewById(R.id.Nombre);
-        direccionUsuario = findViewById(R.id.direccion);
+        //nombreUsuario = findViewById(R.id.nombre);
+       // direccionUsuario = findViewById(R.id.direccion);
         Intent intent = getIntent();
         String nombre = intent.getStringExtra("nombre");
         String direccion = intent.getStringExtra("direccion");
-        nombreUsuario.setText(nombre);
-        direccionUsuario.setText(direccion);
+       // nombreUsuario.setText(usuario.getNombre());
+       // direccionUsuario.setText(direccion);
+        GestorPizza gp = new GestorPizza();
 
         pedirPizza.setOnClickListener(view ->{
-            Pizza pizza = new Pizza();
-            pizza.setTamanioPizza(obtenerTamañoPizza(rg);
-            agregarIngrediente(pizza);
+            pizza = new Pizza();
+
+            Log.i("pizzeriaActivity", String.valueOf(pizza));
+
+        pizza.setListaIngrediente(listaIngrediente);
+
+
+        agregarIngrediente(pizza);
+            Log.i("pizzeriaActivity", String.valueOf(pizza));
+        obtenerTamañoPizza(rg);
+
+        pizza.setTamanioPizza(Tamanio.values()[obtenerTamañoPizza(rg)]);
+        gp.calcularPizza(pizza);
+
+            Log.d("pizza", String.valueOf(pizza.getPrecio()));
 
         });
 
 
     }
 
-    private void agregarIngrediente(Pizza pizza) {
+    private int obtenerTamañoPizza(RadioGroup rg) {
+
+        final int[] n = {1};
+
+        rg.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.radio1) {
+                n[0] = 0;
+
+            }
+            if (checkedId == R.id.radio2) {
+                n[0] = 1;
+
+            }
+            if(checkedId == R.id.radio3) {
+                n[0] = 2;
+            }
+        });
+        return n[0];
+    }
+
+
+    public void agregarIngrediente(Pizza pizza) {
         if (ingrediente1.isChecked()) pizza.agregarIngrediente(new Ingrediente("Jamón York", 1));
         if (ingrediente2.isChecked()) pizza.agregarIngrediente(new Ingrediente("Bacon", 1));
         if (ingrediente3.isChecked()) pizza.agregarIngrediente(new Ingrediente("Carne", 1));
@@ -82,21 +128,6 @@ public class PizzeriaActivity extends AppCompatActivity {
         if (ingrediente7.isChecked()) pizza.agregarIngrediente(new Ingrediente("Anchoas", 3));
         if (ingrediente8.isChecked()) pizza.agregarIngrediente(new Ingrediente("Maíz", 3));
         if (ingrediente9.isChecked()) pizza.agregarIngrediente(new Ingrediente("Piña", 3));
-    }
-
-    private Tamanio obtenerTamañoPizza(RadioGroup rg) {
-
-        int selectedId = rg.getCheckedRadioButtonId();
-        switch (selectedId) {
-            case R.id.radio1:
-                return Tamanio.PEQUEÑO;
-            case R.id.radio2:
-                return Tamanio.MEDIANO;
-            case R.id.radio3:
-                return Tamanio.GRANDE;
-            default:
-                return null; // Sin selección, manejar el caso apropiadamente
-        }
     }
 
 }

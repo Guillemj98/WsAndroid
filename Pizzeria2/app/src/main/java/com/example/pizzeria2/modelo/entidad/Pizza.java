@@ -9,6 +9,10 @@ public class Pizza implements Serializable {
     private double precio;
     private ArrayList<Ingrediente> listaIngrediente;
 
+    public Pizza() {
+
+    }
+
     public Tamanio getTamanioPizza() {
         return tamanioPizza;
     }
@@ -22,6 +26,7 @@ public class Pizza implements Serializable {
     }
 
     public void setPrecio(double precio) {
+
         this.precio = precio;
     }
 
@@ -52,5 +57,12 @@ public class Pizza implements Serializable {
         listaIngrediente.add(ingrediente);
     }
 
-
+    @Override
+    public String toString() {
+        return "Pizza{" +
+                "tamanioPizza=" + tamanioPizza +
+                ", precio=" + precio +
+                ", listaIngrediente=" + listaIngrediente +
+                '}';
+    }
 }

@@ -9,6 +9,10 @@ public class Usuario implements Serializable {
     private String direccion;
     private Pizza pizza;
 
+    public Usuario() {
+
+    }
+
     public String getNombre() {
         return nombre;
     }

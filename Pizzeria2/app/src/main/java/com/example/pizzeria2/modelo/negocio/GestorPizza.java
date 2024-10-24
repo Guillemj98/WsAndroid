@@ -4,11 +4,11 @@ import com.example.pizzeria2.modelo.entidad.Ingrediente;
 import com.example.pizzeria2.modelo.entidad.Pizza;
 
 public class GestorPizza {
-    public double calcularPizza(Pizza pizza){
+    public void calcularPizza(Pizza pizza){
         double precioBase =0;
 
         switch (pizza.getTamanioPizza()){
-            case PEQUEÑO:
+            case PEQUENO:
                 precioBase =5;
                 break;
             case MEDIANO:
@@ -21,7 +21,10 @@ public class GestorPizza {
         for(Ingrediente ingrediente : pizza.getListaIngrediente()){
             precioBase+= ingrediente.getPrecio();
         }
-        return precioBase;
+
+        pizza.setPrecio(precioBase);
+
+
 
 
     }

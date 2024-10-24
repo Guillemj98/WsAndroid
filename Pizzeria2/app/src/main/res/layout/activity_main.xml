@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/img"
-        android:alpha="0.5" />
+        android:alpha="0.3" />
 
 
     <LinearLayout
@@ -53,16 +53,7 @@
             android:textColorHint="#070707"
             android:textStyle="italic"
             android:textSize="20sp" />
-        <EditText
-            android:id="@+id/DireccionUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Dirección"
-            android:inputType="text"
-            android:paddingTop="20dp"
-            android:textColorHint="#070707"
-            android:textStyle="italic"
-            android:textSize="20sp" />
+
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
