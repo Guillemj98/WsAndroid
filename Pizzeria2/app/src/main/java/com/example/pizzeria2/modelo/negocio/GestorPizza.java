@@ -19,7 +19,7 @@ public class GestorPizza {
                 break;
         }
         for(Ingrediente ingrediente : pizza.getListaIngrediente()){
-            precioBase+= ingrediente.getPrecio();
+            precioBase += ingrediente.getPrecio();
         }
 
         pizza.setPrecio(precioBase);

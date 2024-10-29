@@ -17,19 +17,11 @@
             android:exported="false"
             android:label="@string/title_activity_confirmacion"
             android:theme="@style/Theme.Pizzeria2" />
-        <activity
-            android:name=".Cofirmacion"
-            android:exported="false"
-            android:label="@string/title_activity_cofirmacion"
-            android:theme="@style/Theme.Pizzeria2" />
-        <activity
-            android:name=".ConfirmacionActivity"
-            android:exported="false"
-            android:label="@string/title_activity_confirmacion"
-            android:theme="@style/Theme.Pizzeria2" />
+
         <activity
             android:name=".PizzeriaActivity"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

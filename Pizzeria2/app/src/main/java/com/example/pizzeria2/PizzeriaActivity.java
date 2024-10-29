@@ -36,87 +36,77 @@ public class PizzeriaActivity extends AppCompatActivity {
     private CheckBox ingrediente8;
     private CheckBox ingrediente9;
 
+
     Pizza pizza;
-    ArrayList<Ingrediente> listaIngrediente = new ArrayList<>();
-
-
+    ArrayList<Ingrediente> listaIngrediente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Usuario usuario = (Usuario)getIntent().getSerializableExtra(MainActivity.K_USUARIO);
-        Log.d("PizzeriActivity", "usuario".toString());
+        Usuario usuario = (Usuario) getIntent().getSerializableExtra(MainActivity.K_USUARIO);
+        Log.d("PizzeriaActivity", "usuario".toString());
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pizzeria);
 
+        RadioGroup rg = findViewById(R.id.GrupoRadio);
 
-
-         RadioGroup rg = findViewById(R.id.GrupoRadio);
-
-         String tamanioPizza = null;
-         ArrayList<Ingrediente>listaIngredientes = new ArrayList<>();
-         ingrediente1 = findViewById(R.id.JamonYork);
-         ingrediente2 = findViewById(R.id.Bacon);
-         ingrediente3 = findViewById(R.id.Carne);
-         ingrediente4 = findViewById(R.id.Cebolla);
-         ingrediente5 = findViewById(R.id.Pimiento);
-         ingrediente6 = findViewById(R.id.Aceitunas);
-         ingrediente7 = findViewById(R.id.Anchoas);
-         ingrediente8 = findViewById(R.id.Maiz);
-         ingrediente9 = findViewById(R.id.Pinia);
+        ingrediente1 = findViewById(R.id.JamonYork);
+        ingrediente2 = findViewById(R.id.Bacon);
+        ingrediente3 = findViewById(R.id.Carne);
+        ingrediente4 = findViewById(R.id.Cebolla);
+        ingrediente5 = findViewById(R.id.Pimiento);
+        ingrediente6 = findViewById(R.id.Aceitunas);
+        ingrediente7 = findViewById(R.id.Anchoas);
+        ingrediente8 = findViewById(R.id.Maiz);
+        ingrediente9 = findViewById(R.id.Pinia);
 
         Button pedirPizza = findViewById(R.id.hacerPedido);
         //nombreUsuario = findViewById(R.id.nombre);
-       // direccionUsuario = findViewById(R.id.direccion);
+        // direccionUsuario = findViewById(R.id.direccion);
         Intent intent = getIntent();
         String nombre = intent.getStringExtra("nombre");
         String direccion = intent.getStringExtra("direccion");
-       // nombreUsuario.setText(usuario.getNombre());
-       // direccionUsuario.setText(direccion);
+        // nombreUsuario.setText(usuario.getNombre());
+        // direccionUsuario.setText(direccion);
         GestorPizza gp = new GestorPizza();
 
-        pedirPizza.setOnClickListener(view ->{
-            pizza = new Pizza();
+        pizza = new Pizza();
 
-            Log.i("pizzeriaActivity", String.valueOf(pizza));
+        pedirPizza.setOnClickListener(view -> {
 
-        pizza.setListaIngrediente(listaIngrediente);
+            Log.i("PizzeriaActivity", String.valueOf(pizza));
+
+            listaIngrediente = new ArrayList<>();
+
+            pizza.setListaIngrediente(listaIngrediente);
 
 
-        agregarIngrediente(pizza);
-            Log.i("pizzeriaActivity", String.valueOf(pizza));
-        obtenerTamañoPizza(rg);
+            agregarIngrediente(pizza);
 
-        pizza.setTamanioPizza(Tamanio.values()[obtenerTamañoPizza(rg)]);
-        gp.calcularPizza(pizza);
+            Log.i("PizzeriaActivity", String.valueOf(pizza));
 
-            Log.d("pizza", String.valueOf(pizza.getPrecio()));
+            Log.i("PizzeriaActivity", String.valueOf(pizza.getPrecio()));
 
         });
-
-
-    }
-
-    private int obtenerTamañoPizza(RadioGroup rg) {
-
-        final int[] n = {1};
 
         rg.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.radio1) {
-                n[0] = 0;
+                pizza.setTamanioPizza(Tamanio.PEQUENO);
 
             }
             if (checkedId == R.id.radio2) {
-                n[0] = 1;
+                pizza.setTamanioPizza(Tamanio.MEDIANO);
 
             }
-            if(checkedId == R.id.radio3) {
-                n[0] = 2;
+            if (checkedId == R.id.radio3) {
+                pizza.setTamanioPizza(Tamanio.GRANDE);
             }
         });
-        return n[0];
-    }
 
+        gp.calcularPizza(pizza);
+
+
+    }
 
     public void agregarIngrediente(Pizza pizza) {
         if (ingrediente1.isChecked()) pizza.agregarIngrediente(new Ingrediente("Jamón York", 1));
@@ -129,5 +119,4 @@ public class PizzeriaActivity extends AppCompatActivity {
         if (ingrediente8.isChecked()) pizza.agregarIngrediente(new Ingrediente("Maíz", 3));
         if (ingrediente9.isChecked()) pizza.agregarIngrediente(new Ingrediente("Piña", 3));
     }
-
 }
