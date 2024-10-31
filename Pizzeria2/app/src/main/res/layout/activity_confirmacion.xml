@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvNombreUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre: "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvDireccionUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dirección: "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvTamanioPizza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tamaño de la Pizza: "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvIngredientes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingredientes: "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvPrecioFinal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Precio Final: "
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnPedidoProcesado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pedido Procesado" />
+</LinearLayout>
