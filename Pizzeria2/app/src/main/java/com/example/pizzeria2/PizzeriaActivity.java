@@ -69,22 +69,13 @@ public class PizzeriaActivity extends AppCompatActivity {
         // nombreUsuario.setText(usuario.getNombre());
         // direccionUsuario.setText(direccion);
         GestorPizza gp = new GestorPizza();
-
         pizza = new Pizza();
-
         pedirPizza.setOnClickListener(view -> {
-
             Log.i("PizzeriaActivity", String.valueOf(pizza));
-
             listaIngrediente = new ArrayList<>();
-
             pizza.setListaIngrediente(listaIngrediente);
-
-
             agregarIngrediente(pizza);
-
             Log.i("PizzeriaActivity", String.valueOf(pizza));
-
             Log.i("PizzeriaActivity", String.valueOf(pizza.getPrecio()));
 
         });
@@ -92,11 +83,9 @@ public class PizzeriaActivity extends AppCompatActivity {
         rg.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.radio1) {
                 pizza.setTamanioPizza(Tamanio.PEQUENO);
-
             }
             if (checkedId == R.id.radio2) {
                 pizza.setTamanioPizza(Tamanio.MEDIANO);
-
             }
             if (checkedId == R.id.radio3) {
                 pizza.setTamanioPizza(Tamanio.GRANDE);
@@ -104,7 +93,6 @@ public class PizzeriaActivity extends AppCompatActivity {
         });
 
         gp.calcularPizza(pizza);
-
 
     }
 
