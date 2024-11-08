@@ -32,14 +32,15 @@ public class MainActivity extends AppCompatActivity {
         GestorLogin gestorLogin = GestorLogin.getInstance();
 
         botonLogin.setOnClickListener(view -> {
-            String usuario = etNombre.getText().toString();
+            String usuario = etNombre.getText().toString().trim();
 
             if(gestorLogin.validarCredenciales(usuario)){
                 Intent intent = new Intent(MainActivity.this,CalculadoraActivity.class);
+                intent.putExtra("nombre",usuario);
                 startActivity(intent);
 
             }else{
-                Toast.makeText(MainActivity.this,"Usuario o password" +
+                Toast.makeText(MainActivity.this,"Usuario"+
                         " incorrecto",Toast.LENGTH_LONG).show();;
             }
         });

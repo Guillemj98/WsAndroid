@@ -9,12 +9,13 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="204dp"
-        android:layout_height="30dp"
+        android:id="@+id/Usuario"
+        android:layout_width="302dp"
+        android:layout_height="62dp"
         android:text="Usuario"
+        android:textAlignment="center"
         android:textColor="#333333"
         android:textSize="24sp"
-        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/resultTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
