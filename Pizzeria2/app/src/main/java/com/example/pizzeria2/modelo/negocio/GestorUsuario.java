@@ -14,8 +14,6 @@ public class GestorUsuario {
             return 0;
         }
 
-
-
     }
 
 }
