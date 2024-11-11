@@ -5,16 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img_10"
+    android:background="@drawable/img_15"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/Usuario"
         android:layout_width="302dp"
         android:layout_height="62dp"
-        android:text="Usuario"
+        android:text=""
         android:textAlignment="center"
-        android:textColor="#333333"
+        android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/resultTextView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,8 +28,8 @@
         android:layout_marginTop="112dp"
         android:layout_marginEnd="16dp"
         android:gravity="end"
-        android:text="Resultado"
-        android:textColor="#333333"
+        android:text=""
+        android:textColor="#000000"
         android:textSize="70sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.571"
@@ -58,7 +58,7 @@
             android:layout_column="0"
             android:layout_columnSpan="1"
             android:layout_margin="4dp"
-            android:backgroundTint="#DD5D5D"
+            android:backgroundTint="#6C698D"
             android:text="C"
             android:textColor="#000000"
             android:textSize="24sp"/>
@@ -71,7 +71,7 @@
             android:layout_row="0"
             android:layout_column="1"
             android:layout_margin="4dp"
-            android:backgroundTint="#DD5D5D"
+            android:backgroundTint="#6C698D"
             android:text="+"
             android:textColor="#000000"
             android:textSize="24sp" />
@@ -83,7 +83,7 @@
             android:layout_row="1"
             android:layout_column="3"
             android:layout_margin="4dp"
-            android:backgroundTint="#DD5D5D"
+            android:backgroundTint="#6C698D"
             android:text="-"
             android:textColor="#000000"
             android:textSize="24sp" />
@@ -96,7 +96,7 @@
             android:layout_row="0"
             android:layout_column="3"
             android:layout_margin="4dp"
-            android:backgroundTint="#EB6868"
+            android:backgroundTint="#6C698D"
             android:text="×"
             android:textColor="#000000"
             android:textSize="24sp" />
@@ -108,7 +108,7 @@
             android:layout_row="0"
             android:layout_column="2"
             android:layout_margin="4dp"
-            android:backgroundTint="#DD5D5D"
+            android:backgroundTint="#6C698D"
             android:text="/"
             android:textColor="#000000"
             android:textSize="24sp" />
@@ -121,9 +121,9 @@
             android:layout_row="1"
             android:layout_column="0"
             android:layout_margin="4dp"
-            android:backgroundTint="#FFFFFF"
+            android:backgroundTint="#BFAFA6"
+            android:textColor="#000000"
             android:text="1"
-            android:textColor="#333333"
             android:textSize="24sp" />
 
         <Button
@@ -133,9 +133,9 @@
             android:layout_row="1"
             android:layout_column="1"
             android:layout_margin="4dp"
-            android:backgroundTint="#FFFFFF"
+            android:backgroundTint="#BFAFA6"
             android:text="2"
-            android:textColor="#333333"
+            android:textColor="#000000"
             android:textSize="24sp" />
 
         <Button
@@ -145,9 +145,9 @@
             android:layout_row="1"
             android:layout_column="2"
             android:layout_margin="4dp"
-            android:backgroundTint="#FFFFFF"
+            android:backgroundTint="#BFAFA6"
             android:text="3"
-            android:textColor="#333333"
+            android:textColor="#070707"
             android:textSize="24sp" />
 
         <Button
@@ -157,9 +157,9 @@
             android:layout_row="2"
             android:layout_column="0"
             android:layout_margin="4dp"
-            android:backgroundTint="#FFFFFF"
+            android:backgroundTint="#BFAFA6"
             android:text="4"
-            android:textColor="#333333"
+            android:textColor="#000000"
             android:textSize="24sp" />
 
         <Button
@@ -169,9 +169,9 @@
             android:layout_row="2"
             android:layout_column="1"
             android:layout_margin="4dp"
-            android:backgroundTint="#FFFFFF"
+            android:backgroundTint="#BFAFA6"
             android:text="5"
-            android:textColor="#333333"
+            android:textColor="#000000"
             android:textSize="24sp" />
 
         <Button
@@ -181,9 +181,9 @@
             android:layout_row="2"
             android:layout_column="2"
             android:layout_margin="4dp"
-            android:backgroundTint="#FFFFFF"
+            android:backgroundTint="#BFAFA6"
             android:text="6"
-            android:textColor="#333333"
+            android:textColor="#000000"
             android:textSize="24sp" />
 
         <Button
@@ -193,9 +193,9 @@
             android:layout_row="3"
             android:layout_column="0"
             android:layout_margin="4dp"
-            android:backgroundTint="#FFFFFF"
+            android:backgroundTint="#BFAFA6"
             android:text="7"
-            android:textColor="#333333"
+            android:textColor="#000000"
             android:textSize="24sp" />
 
         <Button
@@ -205,9 +205,9 @@
             android:layout_row="3"
             android:layout_column="1"
             android:layout_margin="4dp"
-            android:backgroundTint="#FFFFFF"
+            android:backgroundTint="#BFAFA6"
             android:text="8"
-            android:textColor="#333333"
+            android:textColor="#000000"
             android:textSize="24sp" />
 
         <Button
@@ -217,9 +217,9 @@
             android:layout_row="3"
             android:layout_column="2"
             android:layout_margin="4dp"
-            android:backgroundTint="#FFFFFF"
+            android:backgroundTint="#BFAFA6"
             android:text="9"
-            android:textColor="#333333"
+            android:textColor="#000000"
             android:textSize="24sp" />
 
         <Button
@@ -229,9 +229,9 @@
             android:layout_row="4"
             android:layout_column="1"
             android:layout_margin="4dp"
-            android:backgroundTint="#FFFFFF"
+            android:backgroundTint="#BFAFA6"
             android:text="0"
-            android:textColor="#333333"
+            android:textColor="#000000"
             android:textSize="24sp" />
 
         <Button
@@ -242,7 +242,7 @@
             android:layout_rowSpan="3"
             android:layout_column="3"
             android:layout_margin="4dp"
-            android:backgroundTint="#DD5D5D"
+            android:backgroundTint="#6C698D"
             android:text="="
             android:textColor="#333333"
             android:textSize="24sp" />
