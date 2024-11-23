@@ -22,27 +22,49 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText nombre ;
     private EditText password;
-
+    private TextView mensaje;
     private Button botonLogin;
+    private String mensajeUsuario;
 
     private GestorUsuario gestorUsuario;
     public static final String K_USUARIO = "usuario";
+    private final static String CLAVE_MENSAJE = "CALVE_MENSAJE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("Ciclo de vida","OnCreate Ejecutandose");
+
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
         gestorUsuario = new GestorUsuario();
         nombre = findViewById(R.id.Nombre);
         password = findViewById((R.id.Password));
-
         botonLogin = findViewById(R.id.botonLogin);
+        mensaje = findViewById(R.id.Mensaje);
 
+        if(savedInstanceState!=null){
+            mensajeUsuario = savedInstanceState.getString(CLAVE_MENSAJE);
+        }else{
+            mensajeUsuario="";
+        }
+        mensaje.setText(mensajeUsuario);
+
+
+
+
+    }
+    @Override
+    protected void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+
+        Log.d("MainActivity", "onSaveInstanceState()");
+        outState.putString(CLAVE_MENSAJE, mensajeUsuario);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         botonLogin.setOnClickListener(view -> {
             Usuario u = new Usuario();
             u.setNombre(nombre.getText().toString());
@@ -53,12 +75,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
             }else{
-                Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                mensajeUsuario= "Usuario o contraseña incorrectos";
+                mensaje.setText(mensajeUsuario);
             }
 
 
         });
 
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("Ciclo de vida","OnStop Ejecutandose");
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d("Ciclo de vida","OnResume Ejecutandose");
+        super.onResume();
     }
 }
