@@ -4,28 +4,42 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:gravity="center"
-    android:background="@drawable/img_9">
+    android:gravity="top"
+    android:background="@drawable/img_15">
 
+
+    <TextView
+        android:layout_width="323dp"
+        android:layout_height="51dp"
+        android:layout_margin="32sp"
+        android:fontFamily="@font/ibm_plex_mono_bold"
+        android:text="Calculadora"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/nombreUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="28sp"
         android:hint="Ingresa tu nombre"
-        android:textColorHint="@color/black"
+        android:fontFamily="@font/ibm_plex_mono_bold"
         android:inputType="text"
         android:padding="10dp"
         android:textSize="24sp" />
 
-
     <Button
         android:id="@+id/iniciar"
-        android:layout_width="wrap_content"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
+        android:layout_margin="32sp"
+        android:backgroundTint="#6C698D"
+        android:fontFamily="@font/ibm_plex_mono_bold"
         android:text="Iniciar"
-        android:backgroundTint="#F16363"
-        android:layout_marginTop="20dp"
-        android:textSize="16sp" />
+        android:textColor="@color/black"
+        android:textSize="32sp" />
 
 </LinearLayout>

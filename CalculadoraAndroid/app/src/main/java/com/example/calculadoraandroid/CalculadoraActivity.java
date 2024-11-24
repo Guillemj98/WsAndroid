@@ -71,12 +71,19 @@ public class CalculadoraActivity extends AppCompatActivity {
     }
 
     private void agregarSimbolo(String simbolo) {
-        if (!input.isEmpty()) {
-            operando = Double.parseDouble(input);
-            operador = simbolo;
-            input = "";
-            isNewOperation = false;
-            pantallaCalculadora.setText("");
+        if (!input.isEmpty() || !operador.isEmpty()) {
+            if (!operador.isEmpty() && !isNewOperation) {
+                String textoActual = pantallaCalculadora.getText().toString();
+                textoActual = textoActual.substring(0, textoActual.length() - operador.length());
+                operador = simbolo;
+                pantallaCalculadora.setText(textoActual + operador);
+            } else {
+                operando = Double.parseDouble(input);
+                operador = simbolo;
+                isNewOperation = false;
+                pantallaCalculadora.setText(input + operador);
+                input = "";
+            }
         }
     }
 
