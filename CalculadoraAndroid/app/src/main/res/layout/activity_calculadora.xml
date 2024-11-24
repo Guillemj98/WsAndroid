@@ -5,11 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    android:background="@drawable/img_7"
-=======
     android:background="@drawable/img_15"
->>>>>>> a3b5983c1c5ba3de650e138bd72de1e2a6b4ea5e
+
     tools:context=".MainActivity">
 
     <TextView
