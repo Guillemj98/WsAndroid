@@ -8,6 +8,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.pizzeria2.modelo.entidad.Ingrediente;
+import com.example.pizzeria2.modelo.entidad.Pizza;
+import com.example.pizzeria2.modelo.entidad.Usuario;
+
 import java.util.ArrayList;
 
 public class ConfirmacionActivity extends AppCompatActivity {
@@ -27,24 +31,26 @@ public class ConfirmacionActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        String nombre = intent.getStringExtra("nombre");
-        String direccion = intent.getStringExtra("direccion");
-        String tamanio = intent.getStringExtra("tamanio");
-        double precio = intent.getDoubleExtra("precio", 0.0);
-        ArrayList<String> ingredientes = intent.getStringArrayListExtra("ingredientes");
+        Usuario usuario = (Usuario) intent.getSerializableExtra("usuario");
+        Pizza pizza = (Pizza) intent.getSerializableExtra("pizza");
+        if (usuario == null || pizza == null) {
+            Toast.makeText(this, "Error: No se pudo cargar la información.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
 
-        tvNombreUsuario.setText("Nombre: " + nombre);
-        tvDireccionUsuario.setText("Dirección: " + direccion);
-        tvTamanioPizza.setText("Tamaño de la Pizza: " + tamanio);
-        tvPrecioFinal.setText("Precio Final: " + precio + "€");
+        tvNombreUsuario.setText("Nombre: " + usuario.getNombre());
+        tvDireccionUsuario.setText("Dirección: " + usuario.getDireccion());
+        tvTamanioPizza.setText("Tamaño de la Pizza: " + pizza.getTamanioPizza());
+        tvPrecioFinal.setText("Precio Final: " + pizza.getPrecio() + "€");
 
 
         StringBuilder ingredientesTexto = new StringBuilder();
-        for (String ingrediente : ingredientes) {
-            ingredientesTexto.append(ingrediente).append("\n");
+        for (Ingrediente ingrediente : pizza.getListaIngrediente()) {
+            ingredientesTexto.append(ingrediente.getNombre()).append("\n");
         }
         tvIngredientes.setText("Ingredientes:\n" + ingredientesTexto.toString());
+
 
 
         btnPedidoProcesado.setOnClickListener(view -> {

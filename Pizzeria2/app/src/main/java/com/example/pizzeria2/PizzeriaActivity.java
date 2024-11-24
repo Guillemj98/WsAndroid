@@ -42,11 +42,15 @@ public class PizzeriaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Usuario usuario = (Usuario) getIntent().getSerializableExtra(MainActivity.K_USUARIO);
         Log.d("PizzeriaActivity", "usuario".toString());
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pizzeria);
+        Usuario usuario = (Usuario) getIntent().getSerializableExtra(MainActivity.K_USUARIO);
+
+
+
+        Log.d("PizzeriaActivity", "Usuario: " + (usuario != null ? usuario.getNombre() : "sin usuario"));
 
         RadioGroup rg = findViewById(R.id.GrupoRadio);
 
@@ -61,42 +65,63 @@ public class PizzeriaActivity extends AppCompatActivity {
         ingrediente9 = findViewById(R.id.Pinia);
 
         Button pedirPizza = findViewById(R.id.hacerPedido);
-        //nombreUsuario = findViewById(R.id.nombre);
-        // direccionUsuario = findViewById(R.id.direccion);
+
         Intent intent = getIntent();
         String nombre = intent.getStringExtra("nombre");
         String direccion = intent.getStringExtra("direccion");
-        // nombreUsuario.setText(usuario.getNombre());
-        // direccionUsuario.setText(direccion);
+
         GestorPizza gp = new GestorPizza();
         pizza = new Pizza();
+        listaIngrediente = new ArrayList<>();
+        pizza.setListaIngrediente(listaIngrediente);
+        rg.setOnCheckedChangeListener((group, checkedId) -> {
+
+            if (pizza == null) {
+                Log.e("PizzeriaActivity", "La pizza no está inicializada correctamente.");
+                return;
+            }
+
+            if (checkedId == R.id.radio1) {  // PEQUENO
+                pizza.setTamanioPizza(Tamanio.PEQUENO);
+            } else if (checkedId == R.id.radio2) {  // MEDIANO
+                pizza.setTamanioPizza(Tamanio.MEDIANO);
+            } else if (checkedId == R.id.radio3) {  // GRANDE
+                pizza.setTamanioPizza(Tamanio.GRANDE);
+            } else {
+                Log.w("PizzeriaActivity", "Opción de tamaño no válida.");
+            }
+
+
+            Log.d("PizzeriaActivity", "Tamaño seleccionado: " + pizza.getTamanioPizza());
+        });
         pedirPizza.setOnClickListener(view -> {
             Log.i("PizzeriaActivity", String.valueOf(pizza));
-            listaIngrediente = new ArrayList<>();
-            pizza.setListaIngrediente(listaIngrediente);
+
             agregarIngrediente(pizza);
+            if (pizza.getTamanioPizza() == null) {
+                Toast.makeText(this, "Seleccione un tamaño para la pizza", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            gp.calcularPizza(pizza);
             Log.i("PizzeriaActivity", String.valueOf(pizza));
             Log.i("PizzeriaActivity", String.valueOf(pizza.getPrecio()));
+            Intent intent2 = new Intent(PizzeriaActivity.this, ConfirmacionActivity.class);
+            intent2.putExtra("usuario", usuario);
+            intent2.putExtra("pizza", pizza);
+
+            startActivity(intent2);
 
         });
 
-        rg.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == R.id.radio1) {
-                pizza.setTamanioPizza(Tamanio.PEQUENO);
-            }
-            if (checkedId == R.id.radio2) {
-                pizza.setTamanioPizza(Tamanio.MEDIANO);
-            }
-            if (checkedId == R.id.radio3) {
-                pizza.setTamanioPizza(Tamanio.GRANDE);
-            }
-        });
 
-        gp.calcularPizza(pizza);
+
+
 
     }
 
     public void agregarIngrediente(Pizza pizza) {
+        pizza.getListaIngrediente().clear();
         if (ingrediente1.isChecked()) pizza.agregarIngrediente(new Ingrediente("Jamón York", 1));
         if (ingrediente2.isChecked()) pizza.agregarIngrediente(new Ingrediente("Bacon", 1));
         if (ingrediente3.isChecked()) pizza.agregarIngrediente(new Ingrediente("Carne", 1));

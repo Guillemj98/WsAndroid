@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="32sp"
+
+    >
+
+    <EditText
+        android:id="@+id/NombreNuevo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:hint="Introduce tu nombre: "
+        android:textSize="18sp"
+        />
+
+    <EditText
+        android:id="@+id/ContraseñaNueva"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Introduce tu contraseña: "
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/DireccionNueva"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Introduce tu direccion: "
+        android:textSize="18sp"
+
+        />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:padding="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="64sp"
+
+
+
+            >
+
+        <Button
+            android:textSize="32sp"
+            android:id="@+id/btnVueltaLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vuelta a la pagina principal" />
+        </LinearLayout>
+
+</LinearLayout>

@@ -5,6 +5,9 @@ import com.example.pizzeria2.modelo.entidad.Pizza;
 
 public class GestorPizza {
     public void calcularPizza(Pizza pizza){
+        if (pizza == null) {
+            throw new IllegalArgumentException("La pizza no puede ser null");
+        }
         double precioBase =0;
 
         switch (pizza.getTamanioPizza()){

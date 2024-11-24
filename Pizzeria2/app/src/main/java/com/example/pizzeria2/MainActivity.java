@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -25,10 +27,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView mensaje;
     private Button botonLogin;
     private String mensajeUsuario;
+    private Button botonCrearseCuenta;
 
     private GestorUsuario gestorUsuario;
     public static final String K_USUARIO = "usuario";
     private final static String CLAVE_MENSAJE = "CALVE_MENSAJE";
+
+    private ActivityResultLauncher<Intent> activityForResultLauncher;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +42,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Ciclo de vida","OnCreate Ejecutandose");
 
         setContentView(R.layout.activity_main);
-
-        gestorUsuario = new GestorUsuario();
-        nombre = findViewById(R.id.Nombre);
-        password = findViewById((R.id.Password));
-        botonLogin = findViewById(R.id.botonLogin);
         mensaje = findViewById(R.id.Mensaje);
 
         if(savedInstanceState!=null){
@@ -49,8 +50,24 @@ public class MainActivity extends AppCompatActivity {
             mensajeUsuario="";
         }
         mensaje.setText(mensajeUsuario);
-
-
+        activityForResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == CrearseCuentaActivity.OK) {
+                        Intent intent = result.getData();
+                        Usuario usuario = (Usuario) intent.getSerializableExtra(CrearseCuentaActivity.USUARIO);
+                        if (usuario != null) {
+                            Toast.makeText(this, "Usuario creado: " + usuario.getNombre(), Toast.LENGTH_SHORT).show();
+                            nombre.setText(usuario.getNombre());
+                            password.setText(usuario.getPassword());
+                        }
+                    } else {
+                        Toast.makeText(this, "Algun campo de usuario vacio", Toast.LENGTH_SHORT).show();
+                        nombre.setText("");
+                        password.setText("");
+                    }
+                }
+        );
 
 
     }
@@ -64,6 +81,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+        gestorUsuario = new GestorUsuario();
+        nombre = findViewById(R.id.Nombre);
+        password = findViewById((R.id.Password));
+        botonLogin = findViewById(R.id.botonLogin);
+        botonCrearseCuenta= findViewById(R.id.botonCrearseCuenta);
+
+
         super.onStart();
         botonLogin.setOnClickListener(view -> {
             Usuario u = new Usuario();
@@ -80,6 +104,10 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
+        });
+        botonCrearseCuenta.setOnClickListener(view -> {
+            Intent intent2 = new Intent(MainActivity.this, CrearseCuentaActivity.class);
+            activityForResultLauncher.launch(intent2); // Llamar al launcher correctamente
         });
 
 
